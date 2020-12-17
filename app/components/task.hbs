@@ -1,0 +1,35 @@
+{{!-- <div class="list-item">
+  <input type="text" value={{@task.title}} readonly={{true}}/>
+</div> --}}
+
+<div class="list-item {{@task.state}}" data-test-task>
+  <label class="checkbox">
+    <input
+      type="checkbox"
+      disabled
+      name="checked"
+      checked={{this.isTaskArchived}}
+    />
+    <span
+      class="checkbox-custom"
+      data-test-task-archive
+      {{on "click" this.archive}}
+    ></span>
+  </label>
+  <div class="title">
+    <input
+      type="text"
+      readonly
+      value={{@task.title}}
+      placeholder="Input title"
+      style="text-overflow: ellipsis;"
+    />
+  </div>
+  <div class="actions">
+    {{#if (not-eq @task.state "TASK_ARCHIVED")}}
+      <span data-test-task-pin {{on "click" this.pin}}>
+        <span class="icon-star"></span>
+      </span>
+    {{/if}}
+  </div>
+</div>
